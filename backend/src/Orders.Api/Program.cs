@@ -7,7 +7,8 @@ using Orders.Api.Orders.Application.Services;
 using Orders.Api.Orders.Application.Validators;
 using Orders.Api.Orders.Domain.Interfaces;
 using Orders.Api.Orders.Infrastructure.Repositores;
-using my_first_api.src.Middlewares;
+using Orders.Api.Orders.Application.Messaging;
+using Orders.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,8 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderValidator>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IProcessedStockRepository, ProcessedStockRepository>();
+builder.Services.AddSingleton<IOrderEventPublisher, OrderEventPublisher>();
+
 
 
 var app = builder.Build();

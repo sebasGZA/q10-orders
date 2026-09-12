@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace my_first_api.src.Middlewares;
+namespace Orders.Api.Middlewares;
 
 public class ExceptionMiddleware
 {
