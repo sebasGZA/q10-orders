@@ -11,7 +11,8 @@ public class OrderRepository : IOrderRepository
 
     public OrderRepository(OrdersDbContext context) => _context = context;
 
-    public async Task<List<Order>> GetAllAsync(CancellationToken ct) => await _context.Orders.ToListAsync(ct);
+    public async Task<List<Order>> GetAllAsync(CancellationToken ct) =>
+        await _context.Orders.OrderByDescending(o => o.CreatedAt).ToListAsync(ct);
 
 
     public async Task<Order?> GetByIdAsync(Guid id, CancellationToken ct) =>

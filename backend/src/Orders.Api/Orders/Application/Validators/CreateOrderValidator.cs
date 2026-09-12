@@ -1,7 +1,7 @@
 using FluentValidation;
 using Orders.Api.Orders.Application.Dtos;
 
-namespace my_first_api.src.Todos.Application.Validators;
+namespace Orders.Api.Orders.Application.Validators;
 
 public class CreateOrderValidator : AbstractValidator<CreateOrder>
 {

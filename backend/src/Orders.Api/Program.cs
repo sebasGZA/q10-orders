@@ -1,9 +1,9 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using my_first_api.src.Todos.Application.Validators;
 using Orders.Api.Data;
 using Orders.Api.Orders.Application.Interfaces;
 using Orders.Api.Orders.Application.Services;
+using Orders.Api.Orders.Application.Validators;
 using Orders.Api.Orders.Domain.Interfaces;
 using Orders.Api.Orders.Infrastructure.Repositores;
 
