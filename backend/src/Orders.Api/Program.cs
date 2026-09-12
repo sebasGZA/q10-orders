@@ -7,6 +7,7 @@ using Orders.Api.Orders.Application.Services;
 using Orders.Api.Orders.Application.Validators;
 using Orders.Api.Orders.Domain.Interfaces;
 using Orders.Api.Orders.Infrastructure.Repositores;
+using my_first_api.src.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 using (var scope = app.Services.CreateScope())
 {
