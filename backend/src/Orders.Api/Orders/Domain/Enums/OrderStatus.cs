@@ -1,4 +1,4 @@
-namespace Orders.Api.Models.Enums;
+namespace Orders.Api.Orders.Domain.Enums;
 
 public enum OrderStatus
 {

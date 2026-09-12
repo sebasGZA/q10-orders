@@ -1,6 +1,6 @@
-using Orders.Api.Models.Enums;
+using Orders.Api.Orders.Domain.Enums;
 
-namespace Orders.Api.Models.Entities;
+namespace Orders.Api.Orders.Domain.Entities;
 
 public class Order
 {
