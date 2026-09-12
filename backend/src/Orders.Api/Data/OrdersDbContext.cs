@@ -9,8 +9,7 @@ public class OrdersDbContext : DbContext
 
     public DbSet<Order> Orders => Set<Order>();
 
-
-    public static readonly string[] skuCatalog = { "ABC-01", "ABC-02", "ABC-03" };
+    public DbSet<ProcessedStock> ProcessedStock => Set<ProcessedStock>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,6 +19,11 @@ public class OrdersDbContext : DbContext
             e.Property(o => o.ClientName).IsRequired().HasMaxLength(200);
             e.Property(o => o.Sku).IsRequired().HasMaxLength(50);
             e.Property(o => o.Status).HasConversion<string>().HasMaxLength(20);
+        });
+
+        modelBuilder.Entity<ProcessedStock>(e =>
+        {
+            e.HasKey(p => p.EventId);
         });
     }
 }

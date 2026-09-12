@@ -22,6 +22,7 @@ builder.Services.AddDbContext<OrdersDbContext>(options =>
 builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderValidator>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IProcessedStockRepository, ProcessedStockRepository>();
 
 
 var app = builder.Build();
