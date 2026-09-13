@@ -9,6 +9,7 @@ using Orders.Api.Orders.Domain.Interfaces;
 using Orders.Api.Orders.Infrastructure.Repositores;
 using Orders.Api.Orders.Application.Messaging;
 using Orders.Api.Middlewares;
+using Orders.Api.Orders.Application.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+
+builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection(RabbitMqOptions.SectionName));
 
 builder.Services.AddDbContext<OrdersDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("OrdersDb")));
@@ -25,8 +28,7 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IProcessedStockRepository, ProcessedStockRepository>();
 builder.Services.AddSingleton<IOrderEventPublisher, OrderEventPublisher>();
-
-
+builder.Services.AddHostedService<StockResultConsumer>();
 
 var app = builder.Build();
 
@@ -37,7 +39,6 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<OrdersDbContext>();
     db.Database.EnsureCreated();
 }
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

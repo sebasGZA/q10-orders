@@ -9,4 +9,6 @@ public interface IOrderService
     Task<OrderResponse?> GetByIdAsync(Guid id, CancellationToken ct);
 
     Task<IEnumerable<OrderResponse>> GetAllAsync(CancellationToken ct);
+
+    Task<bool> ApplyStockResultAsync(Guid eventId, Guid orderId, bool booked, CancellationToken ct = default);
 }
