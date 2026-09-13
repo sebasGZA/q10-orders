@@ -1,9 +1,11 @@
 services:
   q10-db:
     image: postgres:16-alpine
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${POSTGRESQL_DB_USER}
+      POSTGRES_PASSWORD: ${POSTGRESQL_DB_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -23,3 +25,39 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+  orders-api:
+    build:
+      context: ./backend/src/Orders.Api
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      ConnectionStrings__OrdersDb: ${POSTGRESQL_DB_ORDERS}
+      RabbitMq__HostName: ${RABBIT_MQ_HOST_NAME}
+      RabbitMq__Port: ${RABBIT_MQ_PORT}
+      RabbitMq__UserName: ${RABBIT_MQ_USER}
+      RabbitMq__Password: ${RABBIT_MQ_PASSWORD}
+    depends_on:
+      q10-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  inventory-worker:
+    build:
+      context: ./backend/src/Inventory.Worker
+    env_file:
+      - .env
+    environment:
+      ConnectionStrings__InventoryDb: ${POSTGRESQL_DB_INVENTORY}
+      RabbitMq__HostName: ${RABBIT_MQ_HOST_NAME}
+      RabbitMq__Port: ${RABBIT_MQ_PORT}
+      RabbitMq__UserName: ${RABBIT_MQ_USER}
+      RabbitMq__Password: ${RABBIT_MQ_PASSWORD}
+    depends_on:
+      q10-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
