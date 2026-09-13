@@ -1,10 +1,10 @@
-using System.Text;
-using System.Text.Json;
-using Microsoft.Extensions.Options;
-using Orders.Api.Orders.Application.Dtos;
-using Orders.Api.Orders.Application.Interfaces;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Microsoft.Extensions.Options;
+using System.Text;
+using System.Text.Json;
+using Orders.Api.Orders.Application.Dtos;
+using Orders.Api.Orders.Application.Interfaces;
 
 namespace Orders.Api.Orders.Application.Messaging;
 

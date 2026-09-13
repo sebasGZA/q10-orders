@@ -1,12 +1,12 @@
 using Xunit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Abstractions;
 using Orders.Api.Data;
 using Orders.Api.Orders.Domain.Entities;
 using Orders.Api.Orders.Domain.Enums;
 using Orders.Api.Orders.Application.Services;
 using Orders.Api.Orders.Infrastructure.Repositores;
 using Orders.Api.Orders.Application.Validators;
-using Microsoft.Extensions.Logging.Abstractions;
 using Orders.Api.Orders.Application.Interfaces;
 using Orders.Api.Orders.Application.Dtos;
 

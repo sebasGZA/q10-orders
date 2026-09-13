@@ -53,7 +53,7 @@ public class IdempotencyTests
         order.Status = OrderStatus.Rejected;
         await db.SaveChangesAsync();
 
-        var twice = await service.ApplyStockResultAsync(eventId, order.Id, reason: false);
+        var twice = await service.ApplyStockResultAsync(eventId, order.Id, reason: true);
 
         Assert.True(once);
         Assert.False(twice);
