@@ -9,7 +9,7 @@ public class OrdersDbContext : DbContext
 
     public DbSet<Order> Orders => Set<Order>();
 
-    public DbSet<ProcessedStock> ProcessedStock => Set<ProcessedStock>();
+    public DbSet<ProcessedStock> ProcessedStocks => Set<ProcessedStock>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

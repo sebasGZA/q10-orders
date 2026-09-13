@@ -12,11 +12,11 @@ public class ProcessedStockRepository : IProcessedStockRepository
     public ProcessedStockRepository(OrdersDbContext context) => _context = context;
 
     public async Task<ProcessedStock?> GetByIdAsync(Guid eventId, CancellationToken ct) =>
-        await _context.ProcessedStock.Where(item => item.EventId == eventId).FirstOrDefaultAsync(ct);
+        await _context.ProcessedStocks.Where(item => item.EventId == eventId).FirstOrDefaultAsync(ct);
 
     public async Task AddAsync(ProcessedStock processedStock, CancellationToken ct)
     {
-        await _context.ProcessedStock.AddAsync(processedStock);
+        await _context.ProcessedStocks.AddAsync(processedStock);
         await _context.SaveChangesAsync(ct);
     }
 }
