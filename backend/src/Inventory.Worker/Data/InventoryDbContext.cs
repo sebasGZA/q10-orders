@@ -7,7 +7,7 @@ public class InventoryDbContext : DbContext
 {
     public InventoryDbContext(DbContextOptions<InventoryDbContext> options) : base(options) { }
     public DbSet<Stock> Stocks => Set<Stock>();
-    public DbSet<ProcessedOrder> ProcessedOrder => Set<ProcessedOrder>();
+    public DbSet<ProcessedOrder> ProcessedOrders => Set<ProcessedOrder>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

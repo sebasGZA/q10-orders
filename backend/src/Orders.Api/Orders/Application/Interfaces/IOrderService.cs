@@ -10,5 +10,5 @@ public interface IOrderService
 
     Task<IEnumerable<OrderResponse>> GetAllAsync(CancellationToken ct);
 
-    Task<bool> ApplyStockResultAsync(Guid eventId, Guid orderId, bool booked, CancellationToken ct = default);
+    Task<bool> ApplyStockResultAsync(Guid eventId, Guid orderId, bool reason, CancellationToken ct = default);
 }

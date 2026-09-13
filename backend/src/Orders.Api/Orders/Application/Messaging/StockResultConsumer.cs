@@ -71,11 +71,11 @@ public class StockResultConsumer : BackgroundService
 
                 var eventId = root.GetProperty("EventId").GetGuid();
                 var orderId = root.GetProperty("OrderId").GetGuid();
-                var booked = !root.TryGetProperty("Reason", out JsonElement _);
+                var reason = root.TryGetProperty("Reason", out JsonElement _);
 
                 using var scope = _scopeFactory.CreateScope();
                 var orderService = scope.ServiceProvider.GetRequiredService<IOrderService>();
-                await orderService.ApplyStockResultAsync(eventId, orderId, booked, stoppingToken);
+                await orderService.ApplyStockResultAsync(eventId, orderId, reason, stoppingToken);
                 await channel.BasicAckAsync(ea.DeliveryTag, multiple: false, cancellationToken: stoppingToken);
             }
             catch (Exception ex)

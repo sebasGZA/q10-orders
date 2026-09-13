@@ -72,7 +72,7 @@ public class OrderService : IOrderService
     public async Task<bool> ApplyStockResultAsync(
         Guid eventId,
         Guid orderId,
-        bool booket,
+        bool reason,
         CancellationToken ct = default
     )
     {
@@ -91,7 +91,7 @@ public class OrderService : IOrderService
 
         if (order.Status == OrderStatus.Pending)
         {
-            order.Status = booket ? OrderStatus.Confirmed : OrderStatus.Rejected;
+            order.Status = reason ? OrderStatus.Rejected : OrderStatus.Confirmed;
         }
 
         await _processedStockRepo.AddAsync(new ProcessedStock { EventId = eventId }, ct);
