@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Order } from "../types/order.interface";
-import { fetchOrders } from "../../api/orders.api";
+import { getOrdersAction } from "../actions/get-orders.action";
 
 const POLL_INTERVAL_MS = 3000;
 
@@ -19,13 +19,13 @@ interface Props {
   refreshSignal: number;
 }
 
-export function OrderList({ refreshSignal }: Props) {
+export const OrderList = ({ refreshSignal }: Props) => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   async function load() {
     try {
-      const data = await fetchOrders();
+      const data = await getOrdersAction();
       setOrders(data);
       setError(null);
     } catch (err) {

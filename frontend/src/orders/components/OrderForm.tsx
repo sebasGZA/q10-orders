@@ -1,5 +1,5 @@
 import { useState, type SubmitEvent } from "react";
-import { createOrder } from "../../api/orders.api";
+import { createOrderAction } from "../actions/create-order.action";
 
 const SKUS = ["ABC-01", "ABC-02", "ABC-03"];
 
@@ -7,7 +7,7 @@ interface Props {
     onCreated: () => void;
 }
 
-export function OrderForm({ onCreated }: Props) {
+export const OrderForm = ({ onCreated }: Props) => {
 
     const [clientName, setClientName] = useState("");
     const [sku, setSku] = useState(SKUS[0]);
@@ -30,7 +30,7 @@ export function OrderForm({ onCreated }: Props) {
 
         setLoading(true);
         try {
-            await createOrder({ clientName: clientName.trim(), sku, quantity });
+            await createOrderAction({ clientName: clientName.trim(), sku, quantity });
             setClientName("");
             setQuantity(1);
             onCreated();

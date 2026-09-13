@@ -2,7 +2,7 @@ import { useState } from "react";
 import { OrderForm } from "../components/OrderForm";
 import { OrderList } from "../components/OrderList";
 
-export function OrderPage() {
+export const OrderPage = () => {
     const [refreshSignal, setRefreshSignal] = useState(0)
     return (
         <>
