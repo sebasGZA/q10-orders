@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import './index.css';
 import { OrderForm } from './orders/components/OrderForm';
+import { OrderList } from './orders/components/OrderList';
 
 export default function App() {
-  const [, setRefreshSignal] = useState(0);
+  const [refreshSignal, setRefreshSignal] = useState(0);
 
   return (
     <div className="app">
@@ -12,6 +13,7 @@ export default function App() {
       </header>
       <main>
         <OrderForm onCreated={() => setRefreshSignal((v) => v + 1)} />
+        <OrderList refreshSignal={refreshSignal} />
       </main>
     </div>
   )

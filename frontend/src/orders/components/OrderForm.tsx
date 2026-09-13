@@ -71,7 +71,6 @@ export function OrderForm({ onCreated }: Props) {
                 <input
                     type="number"
                     min={1}
-                    max={100}
                     value={quantity}
                     onChange={(e) => setQuantity(Number(e.target.value))}
                 />

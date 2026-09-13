@@ -66,3 +66,37 @@ main {
     color: #c53030;
     font-size: 0.9rem;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+.badge-pending {
+    background: #fefcbf;
+    color: #744210;
+}
+
+.badge-confirmed {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.badge-rejected {
+    background: #fed7d7;
+    color: #822727;
+}
