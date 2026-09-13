@@ -11,8 +11,15 @@ public class OrderRepository : IOrderRepository
 
     public OrderRepository(OrdersDbContext context) => _context = context;
 
-    public async Task<List<Order>> GetAllAsync(CancellationToken ct) =>
-        await _context.Orders.OrderByDescending(o => o.CreatedAt).ToListAsync(ct);
+    public async Task<List<Order>> GetAllAsync(int page, int pageSize, CancellationToken ct) =>
+        await _context.Orders
+            .OrderByDescending(o => o.CreatedAt)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(ct);
+
+    public async Task<int> GetAllCountAsync(CancellationToken ct) =>
+        await _context.Orders.CountAsync(ct);
 
 
     public async Task<Order?> GetByIdAsync(Guid id, CancellationToken ct) =>

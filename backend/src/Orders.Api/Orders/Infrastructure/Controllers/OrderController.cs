@@ -23,9 +23,15 @@ public class OrdersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<OrderResponse>>> GetAll(CancellationToken ct)
+    public async Task<ActionResult<IEnumerable<OrderResponse>>> GetAll(
+        CancellationToken ct,
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 10
+    )
     {
-        var orders = await _orderService.GetAllAsync(ct);
+        page = Math.Max(page, 1);
+        pageSize = Math.Clamp(pageSize, 1, 50);
+        var orders = await _orderService.GetAllAsync(page, pageSize, ct);
         return Ok(orders);
     }
 

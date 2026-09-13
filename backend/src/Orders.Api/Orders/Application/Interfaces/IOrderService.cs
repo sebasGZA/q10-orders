@@ -8,7 +8,7 @@ public interface IOrderService
 
     Task<OrderResponse?> GetByIdAsync(Guid id, CancellationToken ct);
 
-    Task<IEnumerable<OrderResponse>> GetAllAsync(CancellationToken ct);
+    Task<PaginationResponse<OrderResponse>> GetAllAsync(int page, int pageSize, CancellationToken ct);
 
     Task<bool> ApplyStockResultAsync(Guid eventId, Guid orderId, bool reason, CancellationToken ct = default);
 }

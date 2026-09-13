@@ -63,10 +63,17 @@ public class OrderService : IOrderService
         return order is null ? null : OrderResponse.FromEntity(order);
     }
 
-    public async Task<IEnumerable<OrderResponse>> GetAllAsync(CancellationToken ct)
+    public async Task<PaginationResponse<OrderResponse>> GetAllAsync(int page, int pageSize, CancellationToken ct)
     {
-        var orders = await _ordersRepo.GetAllAsync(ct);
-        return orders.Select(o => OrderResponse.FromEntity(o));
+        var orders = await _ordersRepo.GetAllAsync(page, pageSize, ct);
+        var count = await _ordersRepo.GetAllCountAsync(ct);
+        return new PaginationResponse<OrderResponse>
+        {
+            Items = [.. orders.Select(OrderResponse.FromEntity)],
+            Page = page,
+            PageSize = pageSize,
+            TotalCount = count
+        };
     }
 
     public async Task<bool> ApplyStockResultAsync(
