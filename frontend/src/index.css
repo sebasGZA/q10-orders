@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    background: #f5f6fa;
+    color: #222;
+}
+
+.app {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+header h1 {
+    font-size: 1.4rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.order-form,
+.order-list {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.order-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.order-form input,
+.order-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.order-form button {
+    padding: 8px 16px;
+    background: #2b6cb0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.order-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.error {
+    color: #c53030;
+    font-size: 0.9rem;
+}
